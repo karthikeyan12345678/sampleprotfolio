@@ -57,6 +57,161 @@
 .social-icon:hover {
     color: #B9BBBE;
 }
+
+/* ── Experience Section ─────────────────────────────── */
+#experience-section {
+    padding: 80px 0 60px;
+}
+
+#experience-header-container {
+    margin-bottom: 48px;
+}
+
+#experience-timeline {
+    position: relative;
+    padding-left: 20px;
+}
+
+/* vertical spine */
+#experience-timeline::before {
+    content: '';
+    position: absolute;
+    left: 140px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, #ff923e 0%, #00b7ff 60%, rgba(0,183,255,0.1) 100%);
+}
+
+.exp-entry {
+    display: grid;
+    grid-template-columns: 120px 40px 1fr;
+    align-items: flex-start;
+    gap: 0;
+    margin-bottom: 36px;
+    position: relative;
+}
+
+.exp-period {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #00b7ff;
+    text-align: right;
+    padding-right: 16px;
+    padding-top: 14px;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+.exp-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #1a2a4a;
+    border: 2px solid #00b7ff;
+    margin: 13px auto 0;
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.exp-current .exp-dot {
+    background: #ff923e;
+    border-color: #ff923e;
+    box-shadow: 0 0 12px rgba(255,146,62,0.55);
+}
+
+.exp-card {
+    background: rgba(9, 20, 52, 0.55);
+    border: 1px solid rgba(0, 183, 255, 0.15);
+    border-radius: 10px;
+    padding: 16px 20px 14px;
+    margin-left: 18px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.exp-card:hover {
+    border-color: rgba(0, 183, 255, 0.4);
+    box-shadow: 0 4px 24px rgba(0, 183, 255, 0.08);
+}
+
+.exp-current .exp-card {
+    border-color: rgba(255, 146, 62, 0.35);
+    background: rgba(255, 146, 62, 0.04);
+}
+
+.exp-current .exp-card:hover {
+    border-color: rgba(255, 146, 62, 0.6);
+    box-shadow: 0 4px 24px rgba(255, 146, 62, 0.12);
+}
+
+.exp-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.exp-badge-current {
+    background: rgba(255, 146, 62, 0.15);
+    color: #ff923e;
+    border: 1px solid rgba(255, 146, 62, 0.4);
+}
+
+.exp-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #e8eaf6;
+    margin: 0 0 4px;
+    line-height: 1.3;
+}
+
+.exp-org {
+    font-size: 12px;
+    font-weight: 600;
+    color: #00b7ff;
+    margin-bottom: 8px;
+}
+
+.exp-orgsub {
+    font-weight: 400;
+    color: #7a8aaa;
+}
+
+.exp-desc {
+    font-size: 12.5px;
+    color: #8fa3c0;
+    line-height: 1.6;
+    margin: 0 0 10px;
+}
+
+.exp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.exp-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba(0, 183, 255, 0.08);
+    color: #00b7ff;
+    border: 1px solid rgba(0, 183, 255, 0.2);
+}
+
+@media (max-width: 640px) {
+    #experience-timeline::before { left: 80px; }
+    .exp-entry { grid-template-columns: 64px 32px 1fr; }
+    .exp-period { font-size: 9px; padding-right: 8px; }
+}
 </style>
 
 <body>
@@ -470,14 +625,14 @@
 
             <div id="work-content" class="content-width column">
                 <div class="column" id="work-header-container">
-                    <div class="section-subheader-container">
+                    <div class="section-subheader-container rv-up">
                         <hr>
                         <h5>Portfolio</h5>
                     </div>
-                    <h1 class="section-header-container">
+                    <h1 class="section-header-container rv-up">
                         Some things
                     </h1>
-                    <h1 class="section-header-container">
+                    <h1 class="section-header-container rv-up">
                         I've worked on
                     </h1>
                 </div>
@@ -506,100 +661,497 @@
             </div>
         </section>
 
-        <!--Contact Container-->
-        <section id="contact-section" class="content-width column">
-            <div class="column" id="contact-header-container">
-                <div class="section-subheader-container">
-                    <hr>
-                    <h5>Say hello 👋</h5>
+
+        <!--Projects Grid Section-->
+        <section id="projects-section" class="content-width column rv-section">
+            <div id="projects-background"></div>
+            <div id="projects-content" class="content-width column">
+                <div class="column" id="projects-header-container">
+                    <div class="section-subheader-container rv-up" style="transition-delay:.05s">
+                        <hr>
+                        <h5>Portfolio</h5>
+                    </div>
+                    <h1 class="section-header-container rv-up" style="transition-delay:.12s">Projects I've built</h1>
                 </div>
-                <h1 class="section-header-container">
-                    Contact me
+                <div id="projects-grid-container"></div>
+            </div>
+        </section>
+
+        <!--Experience Container-->
+        <section id="experience-section" class="content-width column">
+            <div class="column" id="experience-header-container">
+                <div class="section-subheader-container rv-up">
+                    <hr>
+                    <h5>Career timeline</h5>
+                </div>
+                <h1 class="section-header-container rv-up">
+                    Experience
                 </h1>
             </div>
+            <div id="experience-timeline">
 
-            <div id="contact-container">
-                <!--Form Container-->
-                <div id="contact-form-container" class="column contact-container">
-                    <div id="contact-name-input" class="input-container column">
-                        <div class="row">
-                            <label for="contact-name-input-field">Name :</label>
-                            <span class="error-label hide">Please enter your name.</span>
-                        </div>
-                        <input id="contact-name-input-field" tabindex="-1">
-                    </div>
-                    <div id="contact-email-input" class="input-container column">
-                        <div class="row">
-                            <label for="contact-email-input-field">Email :</label>
-                            <span class="error-label hide">Please enter a valid email address.</span>
-                        </div>
-                        <input id="contact-email-input-field" type="email" tabindex="-1">
-                    </div>
-                    <div id="contact-message-input" class="input-container column">
-                        <div class="row">
-                            <label for="contact-message-input-field">Message :</label>
-                            <span class="error-label hide">Please enter your message.</span>
-                        </div>
-                        <textarea id="contact-message-input-field" tabindex="-1"></textarea>
-                    </div>
-                    <div class="row" id="contact-button-container">
-                        <!--Menu Social Link-->
-                        <div id="menu-social-container" class="row">
-                            <a tabindex="-1" href="mailto:vkarthikeyan14@gmail.com">
-                                <i class="fas fa-envelope social-icon"></i>
-                            </a>
-
-                            <a tabindex="-1" href="tel:+919486615293">
-                                <i class="fas fa-phone social-icon"></i>
-                            </a>
-
-                            <a tabindex="-1" target="_blank" href="https://www.linkedin.com/in/karthikeyan-v-8a203a195">
-                                <i class="fab fa-linkedin social-icon"></i>
-                            </a>
-                            
-                            <!--Submit Button-->
-                            <div id="contact-submit-button" class="small-button orange-hover">
-                                Submit
-                            </div>
+                <!-- Entry 1: Current -->
+                <div class="exp-entry exp-current">
+                    <div class="exp-period">DEC 2025 &ndash; APR 2026</div>
+                    <div class="exp-dot"></div>
+                    <div class="exp-card">
+                        <span class="exp-badge exp-badge-current">&#9679; CURRENT</span>
+                        <h3 class="exp-title">Solutions Architect &amp; Project Manager</h3>
+                        <div class="exp-org">Next XR Group <span class="exp-orgsub">(formerly VR AR Solutions Australia)</span></div>
+                        <p class="exp-desc">Owned technical program roadmap for 5+ concurrent enterprise product lines. Designed cloud architecture standards on AWS Lambda, ECS, API Gateway; multi-cloud across AWS, Azure, GCP. Established AI governance guardrails and IAM standards (OAut                        <p class="exp-desc">Owned technical program roadmap for 5+ concurrent enterprise product lines. Designed cloud architecture standards on AWS Lambda, ECS, API Gateway; multi-cloud across AWS, Azure, GCP. Established AI governance guardrails and IAM standards (OAuth 2.0, SAML SSO). Reduced rework 20% via API fabric standards.</p>
+                        <div class="exp-tags">
+                            <span class="exp-tag">Solution Architecture</span>
+                            <span class="exp-tag">AWS</span>
+                            <span class="exp-tag">Multi-Cloud</span>
+                            <span class="exp-tag">AI Governance</span>
+                            <span class="exp-tag">OAuth 2.0</span>
+                            <span class="exp-tag">SAML</span>
                         </div>
                     </div>
                 </div>
 
-                <!--Loading Container-->
-                <div id="contact-loading-container" class="center contact-container hide">
-                    <h4>Delivering...</h4>
+                <!-- Entry 2 -->
+                <div class="exp-entry">
+                    <div class="exp-period">FEB 2025 &ndash; APR 2026</div>
+                    <div class="exp-dot"></div>
+                    <div class="exp-card">
+                        <h3 class="exp-title">Team Leader &mdash; Product &amp; Engineering</h3>
+                        <div class="exp-org">Next XR Group</div>
+                        <p class="exp-desc">Directed 6 engineers + UX + QA, accelerating delivery velocity by 30%. Introduced Agile sprint workflows and Architectural Decision Records (ADRs). Onboarded 3 engineers, cutting ramp-up time by 40%.</p>
+                        <div class="exp-tags">
+                            <span class="exp-tag">Team Leadership</span>
+                            <span class="exp-tag">Agile/Scrum</span>
+                            <span class="exp-tag">ADR</span>
+                            <span class="exp-tag">Mentoring</span>
+                        </div>
+                    </div>
                 </div>
 
-                <!--Result Container-->
-                <div id="contact-result-container" class="contact-container column center hide">
-                    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-                        <polyline id="contact-success-line" class="hide" stroke="#A1CC4D" points="10,70 40,100 115,20">
-                        </polyline>
-                        <line stroke="rgb(216, 84, 84)" class="contact-error-line" x1="5" y1="5" x2="115" y2="115">
-                        </line>
-                        <line stroke="rgb(216, 84, 84)" class="contact-error-line" x1="115" y1="5" x2="5" y2="115">
-                        </line>
-                    </svg>
-                    <div id="contact-result-message-container" class="center column">
-
+                <!-- Entry 3 -->
+                <div class="exp-entry">
+                    <div class="exp-period">OCT 2024 &ndash; APR 2025</div>
+                    <div class="exp-dot"></div>
+                    <div class="exp-card">
+                        <h3 class="exp-title">Senior Developer &mdash; AR/VR &amp; AI Products</h3>
+                        <div class="exp-org">Next XR Group</div>
+                        <p class="exp-desc">Delivered enterprise AR/VR for L&amp;T, Mercedes-Benz, Maruti Suzuki, J&amp;J. TensorFlow anomaly detection at 95% accuracy across 50+ devices. India's first full-body AR try-on at 30+ FPS. Integrated Model Context Protocol (MCP) for AI agent orchestration.</p>
+                        <div class="exp-tags">
+                            <span class="exp-tag">AR/VR</span>
+                            <span class="exp-tag">TensorFlow</span>
+                            <span class="exp-tag">AWS Lambda</span>
+                            <span class="exp-tag">MediaPipe</span>
+                            <span class="exp-tag">MCP</span>
+                            <span class="exp-tag">Unity</span>
+                        </div>
                     </div>
-                    <div class="small-button orange-hover" id="contact-result-button"></div>
+                </div>
+
+                <!-- Entry 4 -->
+                <div class="exp-entry">
+                    <div class="exp-period">JUN 2023 &ndash; OCT 2024</div>
+                    <div class="exp-dot"></div>
+                    <div class="exp-card">
+                        <h3 class="exp-title">XR Developer &amp; Product Lead</h3>
+                        <div class="exp-org">Tata Consultancy Services (TCS)</div>
+                        <p class="exp-desc">End-to-end delivery for 5 enterprise XR clients (defence, banking, education). Architected BITS Pilani XR LMS for 3,000+ students. Designed Amphenol TensorFlow/OpenCV pipeline &mdash; 500+/hr, 70% inspection reduction.</p>
+                        <div class="exp-tags">
+                            <span class="exp-tag">XR Development</span>
+                            <span class="exp-tag">TensorFlow</span>
+                            <span class="exp-tag">OpenCV</span>
+                            <span class="exp-tag">SAML/SSO</span>
+                            <span class="exp-tag">Photon</span>
+                            <span class="exp-tag">AWS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Entry 5 -->
+                <div class="exp-entry">
+                    <div class="exp-period">DEC 2022 &ndash; JUN 2023</div>
+                    <div class="exp-dot"></div>
+                    <div class="exp-card">
+                        <h3 class="exp-title">System Engineer &amp; Scrum Master</h3>
+                        <div class="exp-org">Tata Consultancy Services (TCS)</div>
+                        <p class="exp-desc">Scrum Master for 7 engineers across 3 concurrent workstreams &mdash; 95% on-time delivery. Authored 5 business proposals contributing to 20% increase in project intake.</p>
+                        <div class="exp-tags">
+                            <span class="exp-tag">Scrum Master</span>
+                            <span class="exp-tag">Agile</span>
+                            <span class="exp-tag">Sprint Planning</span>
+                            <span class="exp-tag">Business Proposals</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Entry 6 -->
+                <div class="exp-entry">
+                    <div class="exp-period">DEC 2021 &ndash; DEC 2022</div>
+                    <div class="exp-dot"></div>
+                    <div class="exp-card">
+                        <h3 class="exp-title">Junior Developer &mdash; Full-Stack Delivery</h3>
+                        <div class="exp-org">Tata Consultancy Services (TCS)</div>
+                        <p class="exp-desc">3 product deliveries using Unity, ReactJS, JavaScript, and PostgreSQL. Implemented serverless AWS Lambda functions. Reduced handoff defects by 15%.</p>
+                        <div class="exp-tags">
+                            <span class="exp-tag">Unity</span>
+                            <span class="exp-tag">ReactJS</span>
+                            <span class="exp-tag">AWS Lambda</span>
+                            <span class="exp-tag">PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Entry 7 -->
+                <div class="exp-entry">
+                    <div class="exp-period">FEB 2021 &ndash; DEC 2021</div>
+                    <div class="exp-dot"></div>
+                    <div class="exp-card">
+                        <h3 class="exp-title">Freelance Web Product Developer</h3>
+                        <div class="exp-org">Self-Employed</div>
+                        <p class="exp-desc">8+ e-commerce websites for SMB clients using ReactJS, Node.js, and PostgreSQL. 100% client retention through mobile-first UX design.</p>
+                        <div class="exp-tags">
+                            <span class="exp-tag">ReactJS</span>
+                            <span class="exp-tag">Node.js</span>
+                            <span class="exp-tag">PostgreSQL</span>
+                            <span class="exp-tag">E-Commerce</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Entry 8 -->
+                <div class="exp-entry">
+                    <div class="exp-period">JAN 2021 &ndash; FEB 2021</div>
+                    <div class="exp-dot"></div>
+                    <div class="exp-card">
+                        <h3 class="exp-title">Project Intern</h3>
+                        <div class="exp-org">Nippon Paint India</div>
+                        <p class="exp-desc">Industrial processes and quality management. SOLIDWORKS, CorelDRAW, AutoCAD.</p>
+                        <div class="exp-tags">
+                            <span class="exp-tag">SOLIDWORKS</span>
+                            <span class="exp-tag">AutoCAD</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Entry 9 -->
+                <div class="exp-entry">
+                    <div class="exp-period">DEC 2019 &ndash; JAN 2020</div>
+                    <div class="exp-dot"></div>
+                    <div class="exp-card">
+                        <h3 class="exp-title">Internship Trainee</h3>
+                        <div class="exp-org">Tuticorin Thermal Power Station</div>
+                        <p class="exp-desc">Power generation systems, maintenance protocols, and industrial safety procedures.</p>
+                        <div class="exp-tags">
+                            <span class="exp-tag">Power Systems</span>
+                            <span class="exp-tag">Safety Protocols</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Entry 10 -->
+                <div class="exp-entry">
+                    <div class="exp-period">DEC 2018 &ndash; JAN 2019</div>
+                    <div class="exp-dot"></div>
+                    <div class="exp-card">
+                        <h3 class="exp-title">Intern</h3>
+                        <div class="exp-org">Hyundai Motor India Ltd.</div>
+                        <p class="exp-desc">Automotive assembly, quality control, and production management at Hyundai Motors.</p>
+                        <div class="exp-tags">
+                            <span class="exp-tag">Manufacturing</span>
+                            <span class="exp-tag">Automotive</span>
+                            <span class="exp-tag">Quality Control</span>
+                        </div>
+                    </div>
                 </div>
 
             </div>
         </section>
 
-        <footer class="row center">
-            <span>&copy; Karthikeyan V</span>
 
-            <!--Legal Container-->
-            <div id="legal-container" class="row">
-               
-                   
+
+        <!--Certifications Section-->
+        <section id="certifications-section" class="content-width column rv-section">
+            <div class="column certs-header-container">
+                <div class="section-subheader-container rv-up" style="transition-delay:.05s">
+                    <hr>
+                    <h5>Credentials</h5>
+                </div>
+                <h1 class="section-header-container rv-up" style="transition-delay:.12s">Licenses &amp; Certifications</h1>
             </div>
-        </footer>
+            <div id="certs-grid"></div>
+        </section>
+
+        <!--Skills Section-->
+        <section id="skills-section" class="content-width column rv-section">
+            <div class="column skills-header-container">
+                <div class="section-subheader-container rv-up" style="transition-delay:.05s">
+                    <hr>
+                    <h5>Expertise</h5>
+                </div>
+                <h1 class="section-header-container rv-up" style="transition-delay:.12s">Skills &amp; Technologies</h1>
+            </div>
+            <div class="skills-grid" id="skg"></div>
+        </section>
+
+        <!--Contact Container-->
+        <section id="contact-section" class="content-width column">
+            <div class="column" id="contact-header-container">
+                <div class="section-subheader-container rv-up">
+                    <hr>
+                    <h5>Say hello 👋</h5>
+                </div>
+                <h1 class="section-header-container rv-up">Contact me</h1>
+            </div>
+            <div id="contact-body-row">
+                <!-- Photo panel -->
+                <div id="contact-photo-panel" class="rv-up">
+                    <div id="contact-photo-frame">
+                        <img id="contact-photo-img" src="/images/karthikeyan.jpg" alt="Karthikeyan V" />
+                    </div>
+                    <div id="contact-photo-caption">
+                        <span id="contact-photo-name">Karthikeyan V</span>
+                        <span id="contact-photo-role">Solutions Architect &amp; XR · AI Builder</span>
+                        <span id="contact-photo-loc">📍 Chennai, India</span>
+                    </div>
+                </div>
+            <div id="contact-container" class="column contact-container">
+
+                <!-- Form state -->
+                <div id="contact-form-container" class="column">
+                    <div id="contact-name-input" class="input-container row">
+                        <label>Name</label>
+                        <span class="error-label hide">Name must be at least 4 characters</span>
+                        <input tabindex="-1" id="contact-name-input-field" type="text" placeholder="Your name">
+                    </div>
+                    <div id="contact-email-input" class="input-container row">
+                        <label>Email</label>
+                        <span class="error-label hide">Please enter a valid email address</span>
+                        <input tabindex="-1" id="contact-email-input-field" type="email" placeholder="Your email">
+                    </div>
+                    <div id="contact-message-input" class="input-container column" style="flex:1">
+                        <label>Message</label>
+                        <span class="error-label hide">Message must be at least 10 characters</span>
+                        <textarea tabindex="-1" id="contact-message-input-field" placeholder="Your message"></textarea>
+                    </div>
+                    <div id="contact-button-container" class="row">
+                        <a tabindex="-1" href="mailto:vkarthikeyan14@gmail.com">
+                            <i class="fas fa-envelope social-icon"></i>
+                        </a>
+                        <a tabindex="-1" href="tel:+919486615293">
+                            <i class="fas fa-phone social-icon"></i>
+                        </a>
+                        <a tabindex="-1" target="_blank" href="https://www.linkedin.com/in/karthikeyan-v-8a203a195">
+                            <i class="fab fa-linkedin social-icon"></i>
+                        </a>
+                        <button tabindex="-1" class="small-button" id="contact-submit-button">Send ✉</button>
+                    </div>
+                </div>
+
+                <!-- Loading state -->
+                <div id="contact-loading-container" class="column hide">
+                    <div class="loading"></div>
+                </div>
+
+                <!-- Result state (success / error) -->
+                <div id="contact-result-container" class="column hide">
+                    <svg viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="26" cy="26" r="25" fill="none" stroke="#00b7ff" stroke-width="2"/>
+                        <polyline id="contact-success-line" class="hide" points="14 27 22 34 38 18" stroke="#00b7ff"/>
+                        <line class="contact-error-line" x1="16" y1="16" x2="36" y2="36" stroke="#d85454"/>
+                        <line class="contact-error-line" x1="36" y1="16" x2="16" y2="36" stroke="#d85454"/>
+                    </svg>
+                    <div id="contact-result-message-container" class="column"></div>
+                    <button tabindex="-1" class="small-button" id="contact-result-button">Cool!</button>
+                </div>
+
+            </div><!-- end contact-container -->
+            </div><!-- end contact-body-row -->
+        </section>
+
     </div>
 
-</body>
 
+    <!-- Skills & Scroll-Reveal -->
+    <script>
+
+    /* ── PROJECTS DATA ── */
+    var PM=[
+      {n:'AI-Powered AR Anomaly Detection',co:'L&T (Larsen &amp; Toubro)',cat:'ar',tags:['AR','HoloLens 2','AI/ML','Azure IoT'],
+       d:'Enterprise AR solution overlaying real-time AI anomaly detection on industrial equipment at L&amp;T manufacturing sites using HoloLens 2.'},
+      {n:'Wire AI Anomaly Detection',co:'Amphenol',cat:'ai',tags:['AI/ML','Computer Vision','AWS','Edge AI'],
+       d:'ML pipeline detecting wire harness defects on Amphenol assembly lines, cutting QA time by 60% with real-time edge inference.'},
+      {n:'AI Image-to-3D Generator',co:'Enterprise SaaS',cat:'ai',tags:['AI/ML','Three.js','AWS Lambda','Python'],
+       d:'Full-stack SaaS platform converting 2D product images into interactive 3D models using generative AI, deployed on AWS.'},
+      {n:'Virtual Try-On App',co:'E-Commerce',cat:'ar',tags:['AR','MediaPipe','WebXR','React'],
+       d:'Real-time AR virtual try-on for apparel &amp; accessories using MediaPipe pose estimation and WebXR in the browser.'},
+      {n:'AR SaaS — Business Card Platform',co:'Startup',cat:'ar',tags:['AR','Unity','NFC','REST API'],
+       d:'AR-powered digital business card platform enabling enterprises to embed interactive AR content in NFC-triggered experiences.'},
+      {n:'Remote Assistance AR Platform',co:'Enterprise',cat:'ar',tags:['AR','HoloLens 2','WebRTC','Azure'],
+       d:'HoloLens 2 remote assistance solution letting expert engineers guide field technicians through live AR annotations.'},
+      {n:'Welding VR Simulator',co:'TAFE',cat:'vr',tags:['VR','Unity','Meta Quest','C#'],
+       d:'Immersive VR welding trainer for TAFE students with real-time torch feedback, grading, and performance analytics.'},
+      {n:'Carpentry VR Training',co:'TAFE',cat:'vr',tags:['VR','Unity','Oculus SDK','C#'],
+       d:'Hands-on VR carpentry curriculum covering joinery, measurement, and safety—deployed across TAFE workshops nationwide.'},
+      {n:'Boom Lift VR Simulator',co:'Enterprise',cat:'vr',tags:['VR','Unity','Physics','C#'],
+       d:'High-fidelity VR boom lift operator trainer with realistic physics, safety checklists, and performance scoring.'},
+      {n:'Parachute VR Simulator',co:'Defence / Training',cat:'vr',tags:['VR','Unity','Meta Quest','C#'],
+       d:'VR parachute training simulator covering body position, altitude awareness, and landing for pre-jump rehearsal.'},
+      {n:'BITS Pilani Multiplayer XR LMS',co:'BITS Pilani',cat:'xr',tags:['XR','Photon','Unity','Agora'],
+       d:'Multiplayer XR learning platform enabling collaborative virtual labs, lectures, and live instructor sessions.'},
+      {n:'Metaverse Banking Platform',co:'FinTech',cat:'xr',tags:['Metaverse','Unity','WebRTC','AWS'],
+       d:'Virtual bank branch in the metaverse letting customers interact with advisors, products, and financial tools in 3D.'},
+      {n:'Fire Safety MR Training',co:'Enterprise',cat:'ar',tags:['MR','HoloLens 2','Unity','C#'],
+       d:'Mixed Reality fire safety drill platform overlaying emergency scenarios onto real workplace environments via HoloLens 2.'},
+      {n:'AR Pose Detection Game',co:'Entertainment',cat:'ar',tags:['AR','MediaPipe','WebXR','JavaScript'],
+       d:'Browser-based AR game using real-time body pose detection for interactive fitness and entertainment experiences.'},
+      {n:'AR Banking Chatbot',co:'FinTech',cat:'ai',tags:['AR','AI/ML','React Native','AWS'],
+       d:'AR-enhanced banking assistant overlaying account insights, transaction graphs, and AI chat in the user\'s physical space.'},
+      {n:'VR Caren Driving Simulator',co:'Rehabilitation',cat:'vr',tags:['VR','Unity','Motion Platform','C#'],
+       d:'Therapeutic VR driving simulation for cognitive &amp; motor rehabilitation, tracking patient performance over sessions.'},
+      {n:'Butcher Training VR',co:'TAFE',cat:'vr',tags:['VR','Unity','Meta Quest','C#'],
+       d:'VR butchery skills trainer covering safe knife techniques, hygiene protocols, and meat processing procedures.'},
+      {n:'E-Commerce Web Solutions',co:'Freelance',cat:'web',tags:['React','Node.js','MongoDB','AWS'],
+       d:'Full-stack e-commerce platforms with custom CMS, payment integration, and real-time inventory for SME clients.'}
+    ];
+
+    function renderProjects(){
+      var g=document.getElementById('projects-grid-container');
+      if(!g) return;
+      var h='';
+      for(var i=0;i<PM.length;i++){
+        var p=PM[i];
+        var delay=((i%4)*0.07).toFixed(2);
+        var tags='';
+        for(var t=0;t<p.tags.length;t++) tags+='<span class="proj-tag">'+p.tags[t]+'</span>';
+        h+='<div class="proj-card rv-up" style="transition-delay:'+delay+'s">'
+          +'<span class="proj-cat-badge proj-cat-'+p.cat+'">'+p.cat.toUpperCase()+'</span>'
+          +'<div class="proj-name">'+p.n+'</div>'
+          +'<div class="proj-company">'+p.co+'</div>'
+          +'<div class="proj-desc">'+p.d+'</div>'
+          +'<div class="proj-tags">'+tags+'</div>'
+          +'</div>';
+      }
+      g.innerHTML=h;
+    }
+    renderProjects();
+
+    /* ── CERTIFICATIONS DATA ── */
+    var CERTS=[
+      {n:'AWS Certified Developer – Associate',org:'Amazon Web Services',date:'Sep 2023 · Expires Sep 2026',icon:'aws'},
+      {n:'Unity VR Development',org:'Unity',date:'May 2024',icon:'unity'},
+      {n:'Introduction to Model Context Protocol',org:'Anthropic',date:'Jun 2026',icon:'ai'},
+      {n:'Building with the Claude API',org:'Anthropic',date:'Jun 2026',icon:'ai'},
+      {n:'Certificate of Completion: Claude Code 101',org:'Anthropic',date:'Jun 2026',icon:'ai'},
+      {n:'Certificate of Completion: Claude 101',org:'Anthropic',date:'Jun 2026',icon:'ai'},
+      {n:'AI Fluency for Small Businesses',org:'Anthropic',date:'Jun 2026',icon:'ai'},
+      {n:'AI Fluency Framework &amp; Foundations',org:'Anthropic',date:'Jun 2026',icon:'ai'},
+      {n:'SAP Business Network Solutions for Partners',org:'SAP',date:'Jun 2026',icon:'sap'}
+    ];
+
+    function renderCerts(){
+      var g=document.getElementById('certs-grid');
+      if(!g) return;
+      var ic={'aws':'AWS','ai':'AI','unity':'U','sap':'SAP'};
+      var h='';
+      for(var i=0;i<CERTS.length;i++){
+        var c=CERTS[i];
+        var delay=((i%4)*0.07).toFixed(2);
+        h+='<div class="cert-card cert-'+c.icon+' rv-up" style="transition-delay:'+delay+'s">'
+          +'<div class="cert-org-row">'
+          +'<div class="cert-org-icon icon-'+c.icon+'">'+(ic[c.icon]||'?')+'</div>'
+          +'<span class="cert-org-name">'+c.org+'</span>'
+          +'</div>'
+          +'<div class="cert-title">'+c.n+'</div>'
+          +'<div class="cert-date">Issued '+c.date+'</div>'
+          +'</div>';
+      }
+      g.innerHTML=h;
+    }
+    renderCerts();
+
+    /* ── SKILLS DATA ── */
+    var SKD=[
+      {n:'SOLUTION ARCH.',c:'skf-v',s:[{n:'Microservices Design',p:95},{n:'RESTful API Fabric',p:93},{n:'Digital Twin / IoT',p:88},{n:'Multi-Tier Architecture',p:90},{n:'ESB Integration',p:83}]},
+      {n:'CLOUD PLATFORMS',c:'skf-c',s:[{n:'AWS (Lambda, EC2, ECS)',p:93},{n:'AWS IoT, TwinMaker',p:87},{n:'Azure / GCP',p:82},{n:'OCI (Oracle Cloud)',p:77},{n:'NVIDIA Omniverse',p:85}]},
+      {n:'DEVOPS & CI/CD',c:'skf-v',s:[{n:'Docker',p:88},{n:'CI/CD Pipelines',p:90},{n:'CloudFormation (IaC)',p:87},{n:'Serverless Architecture',p:92},{n:'Git / GitHub',p:95}]},
+      {n:'AI / ML',c:'skf-c',s:[{n:'TensorFlow',p:92},{n:'MediaPipe / OpenCV',p:90},{n:'LLM / AI Toolchain',p:87},{n:'Model Context Protocol',p:85},{n:'AI Governance',p:88}]},
+      {n:'SECURITY & IAM',c:'skf-g',s:[{n:'OAuth 2.0 / SAML / SSO',p:90},{n:'IAM',p:88},{n:'Zero-Trust Security',p:85},{n:'Data Privacy',p:83}]},
+      {n:'DATABASES',c:'skf-g',s:[{n:'PostgreSQL / MySQL',p:90},{n:'MS SQL / Oracle',p:85},{n:'MongoDB / Cassandra',p:82},{n:'Hadoop',p:80}]},
+      {n:'PROJECT MGMT.',c:'skf-gn',s:[{n:'PRD / FRD / BRD',p:98},{n:'Agile / Scrum Master',p:97},{n:'Stakeholder Mgmt.',p:96},{n:'ADR / Leadership',p:95},{n:'0-to-1 Launches',p:94}]},
+      {n:'UNITY & XR',c:'skf-gn',s:[{n:'Unity 3D (C#)',p:99},{n:'AR Foundation',p:96},{n:'Meta Quest / HoloLens',p:95},{n:'Unity XR / MRTK',p:94},{n:'Photon / Agora',p:93},{n:'Blender',p:92}]}
+    ];
+
+    function renderSkills(){
+      var g=document.getElementById('skg');
+      if(!g) return;
+      var h='';
+      for(var ci=0;ci<SKD.length;ci++){
+        var cat=SKD[ci];
+        var delay=((ci%4)*0.08).toFixed(2);
+        var rows='';
+        for(var si=0;si<cat.s.length;si++){
+          var sk=cat.s[si];
+          rows+='<div class="skr">'
+            +'<div class="ski"><span class="skn">'+sk.n+'</span><span class="skpct">'+sk.p+'%</span></div>'
+            +'<div class="skbar"><div class="skf '+cat.c+'" data-w="'+sk.p+'"></div></div>'
+            +'</div>';
+        }
+        h+='<div class="skc rv-up" style="transition-delay:'+delay+'s"><div class="skcn">'+cat.n+'</div>'+rows+'</div>';
+      }
+      g.innerHTML=h;
+    }
+    renderSkills();
+
+    /* ── SCROLL REVEAL OBSERVER ── */
+    (function(){
+      var threshold=0.1;
+      var rootMargin='0px 0px -60px 0px';
+
+      // Bar fill observer (only for skill bars)
+      var barIO=new IntersectionObserver(function(es){
+        es.forEach(function(e){
+          if(e.isIntersecting){
+            e.target.querySelectorAll('.skf').forEach(function(b){
+              b.style.width=b.getAttribute('data-w')+'%';
+            });
+            barIO.unobserve(e.target);
+          }
+        });
+      },{threshold:0.15});
+
+      // General reveal observer
+      var revIO=new IntersectionObserver(function(es){
+        es.forEach(function(e){
+          if(e.isIntersecting){
+            e.target.classList.add('rv-in');
+            if(e.target.classList.contains('skc')) barIO.observe(e.target);
+            revIO.unobserve(e.target);
+          }
+        });
+      },{threshold:threshold, rootMargin:rootMargin});
+
+      function observeAll(){
+        document.querySelectorAll('.rv-up,.rv-left,.rv-right,.rv-fade,.skc').forEach(function(el){
+          revIO.observe(el);
+        });
+        // Section-level observer for stagger children
+        var secIO=new IntersectionObserver(function(es){
+          es.forEach(function(e){
+            if(e.isIntersecting){
+              e.target.classList.add('rv-in');
+              secIO.unobserve(e.target);
+            }
+          });
+        },{threshold:0.05, rootMargin:'0px 0px -40px 0px'});
+        document.querySelectorAll('.rv-section').forEach(function(el){secIO.observe(el)});
+      }
+
+      // Run after DOM is ready
+      if(document.readyState==='loading'){
+        document.addEventListener('DOMContentLoaded', observeAll);
+      } else {
+        observeAll();
+      }
+    })();
+    </script>
+
+</body>
 </html>
