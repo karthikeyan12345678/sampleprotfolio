@@ -37871,24 +37871,36 @@ class lM {
 }
 const cM = [
   {
-    name: "web development",
-    width: "90%",
+    name: "unity 3D & XR dev",
+    width: "99%",
   },
   {
-    name: "app devlopment",
-    width: "55%",
+    name: "agile / scrum master",
+    width: "97%",
   },
   {
-    name: "graphic design",
-    width: "90%",
+    name: "AR / MR / HoloLens",
+    width: "96%",
   },
   {
-    name: "frontend",
-    width: "80%",
+    name: "solution architecture",
+    width: "95%",
   },
   {
-    name: "backend",
-    width: "75%",
+    name: "AWS cloud & devops",
+    width: "93%",
+  },
+  {
+    name: "tensorflow / AI-ML",
+    width: "92%",
+  },
+  {
+    name: "digital twin & IoT",
+    width: "88%",
+  },
+  {
+    name: "react / full-stack web",
+    width: "88%",
   },
 ];
 class hM {
