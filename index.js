@@ -38522,7 +38522,7 @@ let pM = class {
       (this.landingPage = this.experience.ui.landingPage),
       (this.transition = this.experience.ui.transition),
       (this.tweens = []),
-      this.deactivate(!1),
+      this.activate(!1),
       this.domElements.button.addEventListener("click", () => {
         this.transition.isShowing ||
           (this.active ? this.deactivate() : this.activate(),

@@ -1682,3 +1682,203 @@ section {
     transform: translateY(-5px);
     box-shadow: 0 12px 36px rgba(0,0,0,.13);
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   CANVAS BLEED FIX — root cause:
+   #overlay-container has .content-width → width capped at calc(100% - 60px).
+   All inner sections ALSO have .content-width → backgrounds never reach viewport
+   edges → 3-D canvas bleeds through the ~30 px gaps on each side.
+   FIX: make overlay-container 100% wide; then each full-bleed section too.
+   Hero/about keep their own .content-width → remain correctly constrained.
+   ═══════════════════════════════════════════════════════════════════ */
+
+#overlay-container {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+#projects-section,
+#certifications-section,
+#skills-section,
+#contact-section,
+#experience-section {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* ── Experience section had NO background → canvas showed through → text unreadable ── */
+#experience-section {
+    padding: 80px 40px 100px !important;
+    background: #f0f4ff !important;
+    position: relative;
+    z-index: 1;
+}
+
+/* Centre inner experience content, cap at 1200px */
+#experience-header-container {
+    max-width: 1200px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+#experience-timeline {
+    max-width: 1200px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* ── Experience entries scroll-reveal (both class names for safety) ── */
+.experience-entry,
+.exp-entry {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity .65s cubic-bezier(.22,.68,0,1.2),
+                transform .65s cubic-bezier(.22,.68,0,1.2);
+}
+.experience-entry.rv-in,
+.exp-entry.rv-in {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+@media (max-width: 768px) {
+    #experience-section { padding: 60px 20px 80px !important; }
+    #experience-header-container,
+    #experience-timeline { max-width: 100%; }
+}
+@media (max-width: 480px) {
+    #experience-section { padding: 48px 16px 64px !important; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   CONTACT PHOTO — use same avatar as about section
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Frame: dark navy to match the sci-fi about-section card */
+#contact-photo-frame {
+    background: linear-gradient(155deg, #0d1f4a 0%, #091434 100%) !important;
+    border: 2px solid rgba(0,183,255,.35) !important;
+    box-shadow: 0 0 0 1px rgba(0,183,255,.12),
+                0 16px 48px rgba(9,20,52,.28) !important;
+}
+
+/* Avatar: contain (don't crop) + push face to upper portion */
+#contact-photo-img {
+    object-fit: contain !important;
+    object-position: center 10% !important;
+    padding: 8px 8px 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   CONTACT SECTION — mobile scaling fixes
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Tablet (≤ 900px) */
+@media (max-width: 900px) {
+    #contact-section {
+        padding: 60px 24px 80px !important;
+        margin-bottom: 0 !important;
+        min-height: unset !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+    }
+    #contact-body-row {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 32px !important;
+        width: 100% !important;
+        max-width: 540px !important;
+        margin: 28px auto 0 !important;
+    }
+    #contact-photo-panel {
+        width: 100% !important;
+        max-width: 220px !important;
+    }
+    #contact-photo-frame {
+        width: 180px !important;
+        height: 220px !important;
+        margin: 0 auto !important;
+    }
+    #contact-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        max-height: none !important;
+    }
+    #contact-header-container {
+        text-align: left !important;
+        width: 100% !important;
+        max-width: 540px !important;
+        margin: 0 auto !important;
+    }
+}
+
+/* Mobile (≤ 540px) */
+@media (max-width: 540px) {
+    #contact-section {
+        padding: 48px 16px 64px !important;
+    }
+    #contact-body-row {
+        gap: 24px !important;
+        max-width: 100% !important;
+    }
+    #contact-photo-panel {
+        max-width: 160px !important;
+    }
+    #contact-photo-frame {
+        width: 150px !important;
+        height: 190px !important;
+    }
+    #contact-photo-name  { font-size: .95rem !important; }
+    #contact-photo-role  { font-size: .68rem !important; }
+    #contact-photo-loc   { font-size: .66rem !important; }
+    #contact-container {
+        padding: 8px !important;
+        height: auto !important;
+    }
+    #contact-name-input,
+    #contact-email-input { padding: 4px 0 !important; }
+}
+
+/* ── Experience card opacity fix (light section bg) ─── */
+/* Cards were designed for dark canvas; section bg is now #f0f4ff */
+.exp-card {
+    background: rgba(9, 20, 52, 0.92) !important;
+}
+.exp-current .exp-card {
+    background: rgba(9, 20, 52, 0.88) !important;
+    border-color: rgba(255, 146, 62, 0.4) !important;
+}
+.exp-title {
+    color: #e8eaf6 !important;
+}
+.exp-org {
+    color: #00b7ff !important;
+}
+
+/* ── Experience mobile period label fix ─────────────── */
+/* Ensures period text never overlaps the dot/line at 480-640px */
+@media (max-width: 640px) {
+    .exp-period {
+        padding-top: 12px !important;
+        font-size: 9.5px !important;
+    }
+}
+
+/* ── Stacked experience layout < 480px ─────────────── */
+@media (max-width: 480px) {
+    #experience-section {
+        padding: 40px 12px 60px !important;
+    }
+    .exp-card {
+        padding: 12px 14px 12px !important;
+    }
+    .exp-tags {
+        gap: 4px !important;
+    }
+    .exp-tag {
+        font-size: 9px !important;
+        padding: 2px 6px !important;
+    }
+}
